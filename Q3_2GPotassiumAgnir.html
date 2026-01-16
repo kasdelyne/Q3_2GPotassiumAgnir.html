@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title> Club Application Form</title>
+        
+        <style>
+            body{
+                font-family: Arial, Helvetica, sans-serif;
+                background: linear-gradient(180deg, #da9d9d, #fff6cf, #da9d9d);
+                min-height: 100vh;
+            }
+
+            form{
+                max-width: 650px;
+                width: 90%;
+                margin: 20px auto;
+                padding: 20px;
+                background: #fffdfb;
+                border: 1px solid #ac6565;
+                border-radius: 12px;
+                box-shadow: 0 4px 10px rgba(255, 116, 116, 0.621);
+            }
+
+            fieldset{
+                margin-bottom: 20px;
+                padding: 15px;
+                border-radius: 8px;
+                border: 1px solid #d3e6b8;
+                background-color: #ffedcc;
+            }
+
+            legend{
+                font-weight: bold;
+                color: #c77b7b;
+                padding: 0 8px;
+                font-size: 1.5rem;
+            }
+
+            label{
+                display: block;
+                margin-bottom: 12px;
+                color: #e08c8c;
+                font-weight: bold;
+            }
+            input, select, textarea {
+                width: 95%;
+                padding: 8px;
+                margin-top: 4px;
+                border-radius: 6px;
+                border: 1px solid #d8cfcf;
+                background-color: #fff;
+            }
+
+            textarea {
+                height: 80px;
+                resize: vertical;
+            }
+
+            .error{
+                border: 2px solid #e6a5b0;
+                background-color: #fff0f3;
+            }
+            input:focus, select:focus, textarea:focus {
+                outline: none;
+                border: 2px solid #4b2c2c;
+                background-color: #d89393;
+            }
+
+            .buttons {
+                text-align: center;
+            }
+
+            .buttons input {
+                width: 130px;
+                margin: 10px;
+                padding: 10px;
+                border-radius: 8px;
+                border: none;
+                cursor: pointer;
+                font-weight: bold;
+            }
+
+            .buttons input[type="submit"] {
+                background-color: #f2b6c1; 
+                color: #704747;
+            }
+
+            .buttons input[type="submit"]:hover {
+                background-color: #eaa6b2;
+            }
+
+            .buttons input[type="reset"] {
+                background-color: #eaa6b2; 
+                color: #704747;
+            }
+
+            .buttons input[type="reset"]:hover {
+                background-color: #aed8bf;
+            }
+
+            .radio-group{
+                display: flex;
+                gap: 25px;
+                margin-top: 6px;
+                padding-left: 5px;
+            }
+
+            .radio-option{
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                color: #e08c8c;
+            }
+        </style>
+    </head>
+    <body>
+        <form method="post" action="submit"
+        onsubmit="return confirmSubmit()"
+        onreset="return confirmReset()">
+
+            <fieldset>
+                <legend> Personal Information </legend>
+
+                <label> 
+                    Student ID:
+                    <input type="number" name="student_id" required>
+                </label>
+
+                <label> 
+                    Full Name: 
+                    <input type="text" name="full_name" required onblur="checkEmpty(this)">
+                </label>
+
+                <label>
+                    Birthday:
+                    <input type="date" name="birthday" required>
+                </label>
+
+                <label>
+                    Email Address:
+                    <input type="email" name="email" required>
+                </label>
+            </fieldset>
+
+            <fieldset>
+                <legend> Application Details </legend>
+
+                <label>
+                    Mobile Phone:
+                    <input type="text" name="mobile" required onblur="checkEmpty(this)">
+                </label>
+
+                <label>
+                    Grade Level:
+                    <select name="grade_level" required>
+                        <option value=""> 𝄞⨾𓍢ִ໋ Select Grade 𓏲ּ𝄢 </option>
+                        <option value="7"> Grade 7</option>
+                        <option value="8"> Grade 8</option>
+                        <option value="9"> Grade 9</option>
+                        <option value="10"> Grade 10</option>
+                        <option value="11"> Grade 11</option>
+                        <option value="12"> Grade 12</option>
+                    </select>
+                </label>
+
+                <label>
+                    Intern / Extern:
+                </label>
+
+                <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" name="status" value="I" required> Intern
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="status" value="E" required> Extern
+                </label>
+
+                </div>
+                <label>
+                    Preferred Club:
+                    <select name="club" required>
+                        <option value=""> °‧ 𓆝 Select Club 𓆞 ·｡ </option>
+                        <option value="arts"> Arts Club</option>
+                        <option value="astro"> Astronomy Club</option>
+                        <option value="chem"> Chem Club</option>
+                        <option value="dance"> Dance Club</option>
+                        <option value="lang"> Language Club</option>
+                        <option value="swimming"> Swimming Club</option>
+                        <option value="taekwondo"> Taekwondo Club</option>
+                    </select>
+                </label>
+                <label>
+                    Why do you want to join?
+                    <textarea name="reason" required onblur="checkEmpty(this)"></textarea>
+                </label>
+            </fieldset>
+
+            <div class="buttons">
+                <input type="submit" value="Submit">
+                <input type="reset" value="Reset">
+            </div>
+        </form>
+
+        <script>
+            function confirmSubmit(){
+                return confirm("Are you sure you want to submit this application?");
+            }
+
+            function confirmReset(){
+                return confirm("Are you sure you want to reset this application?");
+            }
+
+            function checkEmpty(field){
+                if(field.value.trim() === ""){
+                    field.classList.add("error");
+                }
+
+                else{
+                    field.classList.remove("error");
+                }
+            }
+        </script>
+    </body>
+</html>
