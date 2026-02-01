@@ -1,225 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title> Club Application Form</title>
-        
-        <style>
-            body{
-                font-family: Arial, Helvetica, sans-serif;
-                background: linear-gradient(180deg, #da9d9d, #fff6cf, #da9d9d);
-                min-height: 100vh;
-            }
+<head>
+    <meta charset="UTF-8">
+    <title>Centralized Club Application</title>
 
-            form{
-                max-width: 650px;
-                width: 90%;
-                margin: 20px auto;
-                padding: 20px;
-                background: #fffdfb;
-                border: 1px solid #ac6565;
-                border-radius: 12px;
-                box-shadow: 0 4px 10px rgba(255, 116, 116, 0.621);
-            }
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(180deg, #ffd8d8, #fff6cf);
+            min-height: 100vh;
+        }
 
-            fieldset{
-                margin-bottom: 20px;
-                padding: 15px;
-                border-radius: 8px;
-                border: 1px solid #d3e6b8;
-                background-color: #ffedcc;
-            }
+        form{
+            max-width: 650px;
+            width: 90%;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fffdfb;
+            border: 1px solid #ac6565;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(255, 116, 116, 0.621);
+        }
 
-            legend{
-                font-weight: bold;
-                color: #c77b7b;
-                padding: 0 8px;
-                font-size: 1.5rem;
-            }
+        fieldset{
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #d3e6b8;
+            background-color: #f4fbf6;
+        }
 
-            label{
-                display: block;
-                margin-bottom: 12px;
-                color: #e08c8c;
-                font-weight: bold;
-            }
-            input, select, textarea {
-                width: 95%;
-                padding: 8px;
-                margin-top: 4px;
-                border-radius: 6px;
-                border: 1px solid #d8cfcf;
-                background-color: #fff;
-            }
+        legend{
+            font-weight: bold;
+            color: #c77b7b;
+        }
 
-            textarea {
-                height: 80px;
-                resize: vertical;
-            }
+        label{
+            display: block;
+            margin-bottom: 12px;
+            color: #618d58;
+        }
 
-            .error{
-                border: 2px solid #e6a5b0;
-                background-color: #fff0f3;
-            }
-            input:focus, select:focus, textarea:focus {
-                outline: none;
-                border: 2px solid #4b2c2c;
-                background-color: #d89393;
-            }
+        input, select, textarea{
+            width: 95%;
+            padding: 8px;
+            margin-top: 4px;
+            border-radius: 6px;
+            border: 1px solid #d8cfcf;
+        }
 
-            .buttons {
-                text-align: center;
-            }
+        textarea{
+            height: 80px;
+        }
 
-            .buttons input {
-                width: 130px;
-                margin: 10px;
-                padding: 10px;
-                border-radius: 8px;
-                border: none;
-                cursor: pointer;
-                font-weight: bold;
-            }
+        .buttons{
+            text-align: center;
+        }
 
-            .buttons input[type="submit"] {
-                background-color: #f2b6c1; 
-                color: #704747;
-            }
+        .buttons input{
+            width: 150px;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
 
-            .buttons input[type="submit"]:hover {
-                background-color: #eaa6b2;
-            }
+        .submit{
+            background-color: #f2b6c1;
+        }
 
-            .buttons input[type="reset"] {
-                background-color: #eaa6b2; 
-                color: #704747;
-            }
+        .view{
+            background-color: #bfe3cd;
+        }
+    </style>
+</head>
 
-            .buttons input[type="reset"]:hover {
-                background-color: #aed8bf;
-            }
+<body>
 
-            .radio-group{
-                display: flex;
-                gap: 25px;
-                margin-top: 6px;
-                padding-left: 5px;
-            }
+<form method="post" onsubmit="return saveSignup(event)">
+    <fieldset>
+        <legend>Personal Information</legend>
 
-            .radio-option{
-                display: flex;
-                align-items: center;
-                gap: 6px;
-                color: #e08c8c;
-            }
-        </style>
-    </head>
-    <body>
-        <form method="post" action="submit"
-        onsubmit="return confirmSubmit()"
-        onreset="return confirmReset()">
+        <label>Student ID:
+            <input type="number" name="student_id" required>
+        </label>
 
-            <fieldset>
-                <legend> Personal Information </legend>
+        <label>Full Name:
+            <input type="text" name="full_name" required>
+        </label>
 
-                <label> 
-                    Student ID:
-                    <input type="number" name="student_id" required>
-                </label>
+        <label>Email:
+            <input type="email" name="email" required>
+        </label>
 
-                <label> 
-                    Full Name: 
-                    <input type="text" name="full_name" required onblur="checkEmpty(this)">
-                </label>
+        <label>Mobile:
+            <input type="text" name="mobile" required>
+        </label>
 
-                <label>
-                    Birthday:
-                    <input type="date" name="birthday" required>
-                </label>
+        <label>Grade Level:
+            <select name="grade" required>
+                <option value="">Select Grade</option>
+                <option>Grade 7</option>
+                <option>Grade 8</option>
+                <option>Grade 9</option>
+                <option>Grade 10</option>
+                <option>Grade 11</option>
+                <option>Grade 12</option>
+            </select>
+        </label>
 
-                <label>
-                    Email Address:
-                    <input type="email" name="email" required>
-                </label>
-            </fieldset>
+        <label>Intern / Extern:</label>
+        <label><input type="radio" name="status" value="Intern" required> Intern</label>
+        <label><input type="radio" name="status" value="Extern" required> Extern</label>
 
-            <fieldset>
-                <legend> Application Details </legend>
+        <label>Preferred Club:
+            <select name="club" required>
+                <option value="">Select Club</option>
+                <option>Bake Club</option>
+                <option>Himig Agham</option>
+                <option>Computron</option>
+                <option>Sigasig</option>
+                <option>Dance</option>
+                <option>Likha</option>
+                <option>Astrosoc</option>
+                <option>Volant</option>
+                <option>Alianti</option>
+            </select>
+        </label>
+    </fieldset>
 
-                <label>
-                    Mobile Phone:
-                    <input type="text" name="mobile" required onblur="checkEmpty(this)">
-                </label>
+    <div class="buttons">
+        <input type="submit" value="Submit" class="submit">
+        <input type="button" value="View Sign-Ups" class="view" onclick="location.href='viewSignUp.html'">
+    </div>
+</form>
 
-                <label>
-                    Grade Level:
-                    <select name="grade_level" required>
-                        <option value=""> 𝄞⨾𓍢ִ໋ Select Grade 𓏲ּ𝄢 </option>
-                        <option value="7"> Grade 7</option>
-                        <option value="8"> Grade 8</option>
-                        <option value="9"> Grade 9</option>
-                        <option value="10"> Grade 10</option>
-                        <option value="11"> Grade 11</option>
-                        <option value="12"> Grade 12</option>
-                    </select>
-                </label>
+<script>
+function saveSignup(event){
+    event.preventDefault();
 
-                <label>
-                    Intern / Extern:
-                </label>
+    if(!confirm("Are you sure you want to submit?")) return false;
 
-                <div class="radio-group">
-                <label class="radio-option">
-                    <input type="radio" name="status" value="I" required> Intern
-                </label>
-                <label class="radio-option">
-                    <input type="radio" name="status" value="E" required> Extern
-                </label>
+    const form = event.target;
+    const signup = {
+        id: form.student_id.value,
+        fullname: form.full_name.value,
+        email: form.email.value,
+        mobile: form.mobile.value,
+        grade: form.grade.value,
+        status: form.status.value,
+        club: form.club.value
+    };
 
-                </div>
-                <label>
-                    Preferred Club:
-                    <select name="club" required>
-                        <option value=""> °‧ 𓆝 Select Club 𓆞 ·｡ </option>
-                        <option value="arts"> Arts Club</option>
-                        <option value="astro"> Astronomy Club</option>
-                        <option value="chem"> Chem Club</option>
-                        <option value="dance"> Dance Club</option>
-                        <option value="lang"> Language Club</option>
-                        <option value="swimming"> Swimming Club</option>
-                        <option value="taekwondo"> Taekwondo Club</option>
-                    </select>
-                </label>
-                <label>
-                    Why do you want to join?
-                    <textarea name="reason" required onblur="checkEmpty(this)"></textarea>
-                </label>
-            </fieldset>
 
-            <div class="buttons">
-                <input type="submit" value="Submit">
-                <input type="reset" value="Reset">
-            </div>
-        </form>
+    let signups = localStorage.getItem("clubSignups");
 
-        <script>
-            function confirmSubmit(){
-                return confirm("Are you sure you want to submit this application?");
-            }
+    signups = signups ? JSON.parse(signups) : [];
 
-            function confirmReset(){
-                return confirm("Are you sure you want to reset this application?");
-            }
+    signups.push(signup);
 
-            function checkEmpty(field){
-                if(field.value.trim() === ""){
-                    field.classList.add("error");
-                }
+    localStorage.setItem("clubSignups", JSON.stringify(signups));
 
-                else{
-                    field.classList.remove("error");
-                }
-            }
-        </script>
-    </body>
+    alert("Signup saved successfully!");
+    form.reset();
+}
+</script>
+
+</body>
 </html>
