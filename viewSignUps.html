@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Club Sign-Ups</title>
+
+    <style>
+        body{
+            font-family: Arial;
+            background: #fff0d1;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container{
+            width: 90%;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        table{
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td{
+            border: 1px solid #723030;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th{
+            background: rgb(240, 116, 116);
+            color: white;
+        }
+
+        .message{
+            margin-top: 20px;
+            font-weight: bold;
+            color: rgb(240, 116, 116);
+        }
+
+        a{
+            display: inline-block;
+            margin-top: 15px;
+        }
+        </style>
+        </head>
+
+        <body>
+
+        <div class="container">
+            <h2>Show List of Students Who Signed-Up</h2>
+            <p><strong>Coded by: Agnir</strong></p>
+
+            <a href="Q3_2GPotassiumAgnir.html">⬅ Back to Signup</a>
+
+            <br><br>
+
+            Select Your Club:
+            <select id="clubFilter" onchange="filterClub()">
+                <option value="ALL">-- ALL --</option>
+                <option>Bake Club</option>
+                <option>Himig Agham</option>
+                <option>Computron</option>
+                <option>Sigasig</option>
+                <option>Dance</option>
+                <option>Likha</option>
+                <option>Astrosoc</option>
+                <option>Volant</option>
+                <option>Alianti</option>
+            </select>
+
+            <p>Total Signup: <span id="total">0</span></p>
+
+            <table id="signupTable">
+                <thead>
+                    <tr>
+                        <th>Club</th>
+                        <th>ID</th>
+                        <th>Fullname</th>
+                        <th>Grade</th>
+                        <th>Email</th>
+                        <th>Mobile</th>
+                        <th>Intern/Extern</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <div class="message" id="message"></div>
+        </div>
+
+        <script>
+        let allSignups = JSON.parse(localStorage.getItem("clubSignups"));
+
+        if(!allSignups || allSignups.length === 0){
+            document.getElementById("message").textContent =
+                "No sign-ups saved yet.";
+        }else{
+            displayTable(allSignups);
+        }
+
+        function displayTable(data){
+            const tbody = document.querySelector("#signupTable tbody");
+            tbody.innerHTML = "";
+
+            data.forEach(s => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td>${s.club}</td>
+                        <td>${s.id}</td>
+                        <td>${s.fullname}</td>
+                        <td>${s.grade}</td>
+                        <td>${s.email}</td>
+                        <td>${s.mobile}</td>
+                        <td>${s.status}</td>
+                    </tr>
+                `;
+            });
+
+            document.getElementById("total").textContent = data.length;
+            document.getElementById("message").textContent = "";
+        }
+
+
+        function filterClub(){
+            const selected = document.getElementById("clubFilter").value;
+
+            if(selected === "ALL"){
+                displayTable(allSignups);
+                return;
+            }
+
+            const filtered = allSignups.filter(s => s.club === selected);
+
+            if(filtered.length === 0){
+                document.querySelector("#signupTable tbody").innerHTML = "";
+                document.getElementById("total").textContent = 0;
+                document.getElementById("message").textContent =
+                    "No Sign Ups for the club";
+            }else{
+                displayTable(filtered);
+            }
+        }
+        </script>
+
+    </body>
+</html>
+
